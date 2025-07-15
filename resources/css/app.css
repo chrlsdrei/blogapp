@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+:root {
+    --color-camarone-50: #ecfff1;
+    --color-camarone-100: #d2ffe1;
+    --color-camarone-200: #a9ffc6;
+    --color-camarone-300: #66ff9a;
+    --color-camarone-400: #1eff67;
+    --color-camarone-500: #00f642;
+    --color-camarone-600: #00cd33;
+    --color-camarone-700: #00a02b;
+    --color-camarone-800: #007d27;
+    --color-camarone-900: #016021;
+    --color-camarone-950: #003a11;
+}
+
+/* Tailwind Custom Colors */
+.bg-camarone-50 { background-color: var(--color-camarone-50); }
+.bg-camarone-100 { background-color: var(--color-camarone-100); }
+.bg-camarone-200 { background-color: var(--color-camarone-200); }
+.bg-camarone-300 { background-color: var(--color-camarone-300); }
+.bg-camarone-400 { background-color: var(--color-camarone-400); }
+.bg-camarone-500 { background-color: var(--color-camarone-500); }
+.bg-camarone-600 { background-color: var(--color-camarone-600); }
+.bg-camarone-700 { background-color: var(--color-camarone-700); }
+.bg-camarone-800 { background-color: var(--color-camarone-800); }
+.bg-camarone-900 { background-color: var(--color-camarone-900); }
+.bg-camarone-950 { background-color: var(--color-camarone-950); }
+
+.text-camarone-50 { color: var(--color-camarone-50); }
+.text-camarone-100 { color: var(--color-camarone-100); }
+.text-camarone-200 { color: var(--color-camarone-200); }
+.text-camarone-300 { color: var(--color-camarone-300); }
+.text-camarone-400 { color: var(--color-camarone-400); }
+.text-camarone-500 { color: var(--color-camarone-500); }
+.text-camarone-600 { color: var(--color-camarone-600); }
+.text-camarone-700 { color: var(--color-camarone-700); }
+.text-camarone-800 { color: var(--color-camarone-800); }
+.text-camarone-900 { color: var(--color-camarone-900); }
+.text-camarone-950 { color: var(--color-camarone-950); }
+
+.border-camarone-200 { border-color: var(--color-camarone-200); }
+.border-camarone-300 { border-color: var(--color-camarone-300); }
+.border-camarone-400 { border-color: var(--color-camarone-400); }
+.border-camarone-500 { border-color: var(--color-camarone-500); }
+.border-camarone-600 { border-color: var(--color-camarone-600); }
+
+/* Blog Post Card Styles */
+.blog-post-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 160, 43, 0.1);
+    border: 1px solid var(--color-camarone-200);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-camarone-500), var(--color-camarone-600));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.blog-post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 160, 43, 0.15);
+    border-color: var(--color-camarone-300);
+}
+
+.blog-post-card:hover::before {
+    transform: scaleX(1);
+}
+
+.blog-post-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-camarone-800);
+    margin-bottom: 16px;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+}
+
+.blog-post-card:hover .blog-post-title {
+    color: var(--color-camarone-700);
+}
+
+.blog-post-body {
+    color: var(--color-camarone-700);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.blog-post-meta {
+    display: flex;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-camarone-100);
+    font-size: 0.875rem;
+    color: var(--color-camarone-600);
+}
+
+.blog-post-date,
+.blog-post-author {
+    position: relative;
+}
+
+.blog-post-author::before {
+    content: '•';
+    position: absolute;
+    left: -10px;
+    color: var(--color-camarone-400);
+}
+
+/* Authentication Buttons */
+.auth-button {
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.auth-button:hover::before {
+    left: 100%;
+}
+
+.auth-button-primary {
+    background: linear-gradient(135deg, var(--color-camarone-600), var(--color-camarone-700));
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 205, 51, 0.3);
+}
+
+.auth-button-primary:hover {
+    background: linear-gradient(135deg, var(--color-camarone-700), var(--color-camarone-800));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 205, 51, 0.4);
+}
+
+.auth-button-secondary {
+    background: white;
+    color: var(--color-camarone-700);
+    border-color: var(--color-camarone-300);
+    box-shadow: 0 4px 15px rgba(0, 160, 43, 0.1);
+}
+
+.auth-button-secondary:hover {
+    background: var(--color-camarone-50);
+    border-color: var(--color-camarone-400);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 160, 43, 0.15);
+}
+
+/* Fade In Animation */
+.fade-in-text {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in-text.fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-camarone-50);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-camarone-300);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-camarone-400);
+}
+
+/* Additional Utility Classes */
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-camarone-600), var(--color-camarone-800));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-camarone-200), transparent);
+    margin: 40px 0;
+}
