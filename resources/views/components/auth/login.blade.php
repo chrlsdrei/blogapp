@@ -6,8 +6,7 @@
 </head>
 <body class="font-sans antialiased">
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-transparent">
-        <div class="p-8 rounded-lg shadow-md w-full sm:max-w-md mt-6 bg-[#ecfff1] border border-camarone-200">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 p-8 rounded-lg shadow-md w-full sm:max-w-md mt-6 bg-[#ecfff1] border border-camarone-200">
 
             <h2 class="text-3xl font-bold text-center text-camarone-800 mb-8">
                 Welcome Gardeners!
@@ -37,6 +36,16 @@
                     @enderror
                 </div>
 
+                <!-- Remember Me -->
+                <div class="mb-4">
+                    <input id="remember" type="checkbox" name="remember">
+                    <label for="remember" class="text-sm text-camarone-700">Remember Me</label>
+                </div>
+
+                @error('login_error')
+                    <div class="error text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+
                 <div class="flex items-center justify-end mt-4">
                     <a class="underline text-sm text-camarone-600 hover:text-camarone-800 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-camarone-500"
                        href="{{ route('register') }}">
@@ -50,7 +59,6 @@
                 </div>
             </form>
         </div>
-    </div>
 
 </body>
 </x-nav>

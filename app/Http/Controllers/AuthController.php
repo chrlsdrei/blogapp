@@ -22,4 +22,24 @@ class AuthController extends Controller
         Auth::login($user);
         return redirect()->route('login')->with('success', 'Registration successful! Welcome to the blog app.');
     }
+
+    //Login User
+    public function login(Request $request){
+    $fields = $request->validate([
+        'username' => 'required|max:255',
+        'password' => 'required|min:5',
+    ]);
+
+
+    //Try to Login
+
+    if (Auth::attempt($fields, $request->remember)) {
+        return redirect()->route('welcome')->with('success', 'Login successful! Welcome back.');
+    } else{
+        return back()->withErrors([
+            'login_error' => 'Invalid credentials. Please try again.',
+        ]);
+    }
+
+}
 }
