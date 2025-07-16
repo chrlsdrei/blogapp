@@ -7,7 +7,7 @@
     <title>{{ env('APP_NAME') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-camarone-50 min-h-screen">
+<body class="min-h-screen bg-image">
     <header>
         <nav class="bg-camarone-800 text-white p-4">
             <ul class="flex space-x-4">

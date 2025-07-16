@@ -7,14 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-camarone-50 text-camarone-900">
+<body class="bg-color-camarone-50 text-camarone-900">
     <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center px-8 bg-gradient-to-br from-camarone-50 to-camarone-100">
+    <section class="min-h-screen flex flex-col justify-center items-center px-8 bg-image">
         <div class="text-center max-w-4xl">
-            <h1 class="text-6xl font-bold mb-6 text-camarone-800 leading-tight">
+            <h1 class="text-6xl font-bold mb-6 text-camarone-800 leading-tight text-stroke-camarone-100">
                 Blog Your Garden
             </h1>
-            <p class="text-xl text-camarone-700 leading-relaxed max-w-3xl mx-auto">
+            <p class="text-xl font-bold text-camarone-200 leading-relaxed max-w-3xl mx-auto text-stroke-camarone-950">
                 Share what you've built, connect with people, trade pets and fruits, make new friends, all in one in a single platform
             </p>
         </div>
@@ -86,7 +86,7 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="py-20 px-8 bg-gradient-to-t from-camarone-100 to-camarone-50">
+    <section class="py-20 px-8 bg-camarone-50">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-4xl font-bold text-camarone-800 mb-8">
                 Ready to Start Your Garden Journey?

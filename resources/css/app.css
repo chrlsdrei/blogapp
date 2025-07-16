@@ -234,3 +234,29 @@ html {
     background: linear-gradient(90deg, transparent, var(--color-camarone-200), transparent);
     margin: 40px 0;
 }
+
+.bg-image {
+    background-image: url('../../public/images/growagarden.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--color-camarone-50) !important;
+}
+
+.text-stroke-camarone-950 {
+    -webkit-text-stroke: 1px var(--color-camarone-950);
+    text-shadow:
+        1px 1px 0 var(--color-camarone-950),
+        -1px -1px 0 var(--color-camarone-950),
+        1px -1px 0 var(--color-camarone-950),
+        -1px 1px 0 var(--color-camarone-950);
+}
+
+.text-stroke-camarone-100 {
+    -webkit-text-stroke: 1px var(--color-camarone-100);
+    text-shadow:
+        1px 1px 0 var(--color-camarone-100),
+        -1px -1px 0 var(--color-camarone-100),
+        1px -1px 0 var(--color-camarone-100),
+        -1px 1px 0 var(--color-camarone-100);
+}
