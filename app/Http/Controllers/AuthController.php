@@ -34,12 +34,21 @@ class AuthController extends Controller
     //Try to Login
 
     if (Auth::attempt($fields, $request->remember)) {
-        return redirect()->route('welcome')->with('success', 'Login successful! Welcome back.');
+        return redirect()->route('dashboard')->with('success', 'Login successful! Welcome back.');
     } else{
         return back()->withErrors([
             'login_error' => 'Invalid credentials. Please try again.',
         ]);
     }
-
 }
+
+    //Logout User
+    public function logout(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('welcome')->with('success', 'You have been logged out successfully.');
+    }
 }

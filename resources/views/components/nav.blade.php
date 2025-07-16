@@ -9,12 +9,12 @@
 </head>
 <body class="min-h-screen bg-image">
     <header>
-        <nav class="bg-camarone-800 text-white p-4">
+        <nav class="bg-camarone-800 text-camarone-50 p-4">
             <div class="flex justify-between items-center">
                 <!-- Left side - Home link -->
                 <div>
                     <a href="{{ route('welcome') }}"
-                       class="transition duration-150 hover:text-camarone-200">Home</a>
+                       class="text-2xl font-bold transition duration-150 hover:text-camarone-200">Home</a>
                 </div>
 
                 <!-- Right side - Auth section -->
@@ -29,8 +29,12 @@
                             <div class="px-4 py-2 border-b border-camarone-200">
                                 <p class="text-camarone-800 font-medium">{{ auth()->user()->username }}</p>
                             </div>
-                            <a href="#" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">Dashboard</a>
-                            <a href="#" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">Profile</a>
+                            <a href="{{ route('dashboard') }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">Dashboard</a>
+
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit" class="w-full text-left block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150 cursor-pointer">Logout</button>
+                            </form>
                             <div class="border-t border-camarone-200">
                             </div>
                         </div>
