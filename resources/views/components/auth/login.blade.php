@@ -1,12 +1,18 @@
-<x-nav>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ env('APP_NAME') }} - Login</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans antialiased">
+<body class="font-sans antialiased min-h-screen bg-image">
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 p-8 rounded-lg shadow-md w-full sm:max-w-md mt-6 bg-[#ecfff1] border border-camarone-200">
+<x-nav />
+
+<main class="py-8 px-4 mx-auto max-w-lg">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+        <div class="p-8 rounded-lg shadow-md w-full sm:max-w-md mt-6 bg-white border border-camarone-200">
 
             <h2 class="text-3xl font-bold text-center text-camarone-800 mb-8">
                 Welcome Gardeners!
@@ -59,6 +65,8 @@
                 </div>
             </form>
         </div>
+    </div>
+</main>
 
 </body>
-</x-nav>
+</html>

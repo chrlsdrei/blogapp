@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Your Garden</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-color-camarone-50 text-camarone-900">
+<body class="min-h-screen">
+
+<x-nav />
+
+<main>
     <!-- Hero Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center px-8 bg-image">
+    <section class="min-h-screen bg-image flex flex-col justify-center items-center px-8">
         <div class="text-center max-w-4xl">
             <h1 class="text-6xl font-bold mb-6 text-camarone-800 leading-tight text-stroke-camarone-100">
                 Blog Your Garden
@@ -101,5 +104,6 @@
             </div>
         </div>
     </section>
+</main>
 </body>
 </html>

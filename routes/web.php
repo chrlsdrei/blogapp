@@ -7,17 +7,19 @@ use App\Http\Controllers\DashboardController;
 Route::view('/', 'welcome')
     ->name('welcome');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+});
 
 Route::view('/register', 'components.auth.register')
     ->name('register');
 
 Route::view('/login', 'components.auth.login')
-    ->name('login');
+    ->middleware('guest')->name('login');
 
 Route::post('/register', [AuthController::class, 'register'])
     ->name('register');

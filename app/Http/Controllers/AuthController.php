@@ -34,7 +34,7 @@ class AuthController extends Controller
     //Try to Login
 
     if (Auth::attempt($fields, $request->remember)) {
-        return redirect()->route('dashboard')->with('success', 'Login successful! Welcome back.');
+        return redirect()->intended('dashboard')->with('success', 'Login successful! Welcome back.');
     } else{
         return back()->withErrors([
             'login_error' => 'Invalid credentials. Please try again.',
