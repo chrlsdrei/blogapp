@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::latest()->get();
+        $posts = Post::latest()->paginate(5);
         // If you want to paginate the posts, you can use:
         // $posts = Post::paginate(10);
 
