@@ -2,10 +2,18 @@
     <nav class="bg-camarone-800 text-camarone-50 p-4">
         <div class="flex justify-between items-center">
             <!-- Left side - Home link -->
+            @guest
             <div>
                 <a href="{{ route('welcome') }}"
                    class="text-2xl font-bold transition duration-150 hover:text-camarone-200">Home</a>
             </div>
+            @endguest
+            @auth
+            <div>
+                <a href="{{ route('home') }}"
+                   class="text-2xl font-bold transition duration-150 hover:text-camarone-200">Home</a>
+            </div>
+            @endauth
 
             <!-- Right side - Auth section -->
             <div>
@@ -19,7 +27,7 @@
                         <div class="px-4 py-2 border-b border-camarone-200">
                             <p class="text-camarone-800 font-medium">{{ auth()->user()->username }}</p>
                         </div>
-                        <a href="{{ route('dashboard') }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">Dashboard</a>
+                        <a href="{{ route('home') }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">View Profile</a>
 
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
@@ -56,9 +64,9 @@
     document.addEventListener('click', function(event) {
         const dropdown = document.getElementById('dropdown');
         if (!dropdown) return;
-        
+
         const button = event.target.closest('.round-btn');
-        
+
         if (!button && !dropdown.contains(event.target)) {
             dropdown.classList.add('hidden');
         }
