@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function register(Request $request){
         $fields = $request->validate([
-            'username' => 'required|max:255',
+            'username' => 'required|max:255|unique:users',
             'contact_number' => 'nullable|digits:11',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:5|confirmed',
@@ -34,7 +34,7 @@ class AuthController extends Controller
     //Try to Login
 
     if (Auth::attempt($fields, $request->remember)) {
-        return redirect()->intended('dashboard')->with('success', 'Login successful! Welcome back.');
+        return redirect()->route('home')->with('success', 'Login successful! Welcome back.');
     } else{
         return back()->withErrors([
             'login_error' => 'Invalid credentials. Please try again.',
