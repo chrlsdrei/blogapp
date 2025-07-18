@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashboardController;
 
 Route::view('/', 'welcome')
     ->name('welcome');
@@ -22,6 +23,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/home', [PostController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/create-post', [DashboardController::class, 'index'])->name('create-post');
 
     // Only logged-in users can perform these actions.
     Route::resource('posts', PostController::class)->except(['index', 'show']);
