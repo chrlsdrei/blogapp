@@ -25,6 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [PostController::class, 'index'])->name('home');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+    // Profile route
+    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
     Route::get('/create-post', [DashboardController::class, 'index'])->name('create-post');
 
     // Comments route (nested under posts)
