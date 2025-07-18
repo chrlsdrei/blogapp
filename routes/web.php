@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CommentController;
 
 Route::view('/', 'welcome')
     ->name('welcome');
@@ -25,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/create-post', [DashboardController::class, 'index'])->name('create-post');
+
+    // Comments route (nested under posts)
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 
     // Only logged-in users can perform these actions.
     Route::resource('posts', PostController::class)->except(['index', 'show']);

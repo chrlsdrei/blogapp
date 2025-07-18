@@ -69,13 +69,16 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // Load the user relationship for the post
-        $post->load('user');
+        // Load the user relationship for the post and comments with their users (latest first)
+        $post->load(['user', 'comments.user' => function ($query) {
+            $query->latest();
+        }]);
+
+        // Order comments by latest first
+        $post->comments = $post->comments->sortByDesc('created_at');
 
         return view('components.users.posts', compact('post'));
-    }
-
-    /**
+    }    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Post $post)
