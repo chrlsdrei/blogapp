@@ -28,9 +28,6 @@ class CommentController extends Controller
         return redirect()->route('posts.show', $post->slug);
     }
 
-    /**
-     * Remove the specified comment from storage.
-     */
     public function destroy(Post $post, Comment $comment)
     {
         // Check if the user is authorized to delete this comment

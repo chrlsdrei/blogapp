@@ -58,13 +58,6 @@
                           placeholder="Write your post content here...">{{ old('body', $post->body) }}</textarea>
             </div>
 
-            <div>
-                <label for="featured_image" class="block text-sm font-medium text-camarone-800 mb-2">Featured Image URL (Optional)</label>
-                <input type="url" id="featured_image" name="featured_image" value="{{ old('featured_image', $post->featured_image) }}"
-                       class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200"
-                       placeholder="https://example.com/image.jpg">
-            </div>
-
             <div class="flex items-center justify-between pt-6 border-t border-camarone-200">
                 <a href="{{ route('profile') }}" class="inline-flex items-center px-4 py-2 text-camarone-600 hover:text-camarone-700 font-medium transition-colors duration-200">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

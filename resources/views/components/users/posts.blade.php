@@ -34,16 +34,11 @@
 
         <!-- Post Meta Information -->
         <div class="blog-post-meta mb-6">
-            <span class="blog-post-date">Published {{ $post->created_at->format('F j, Y') }}</span>
+            <span class="blog-post-date">{{ $post->created_at->diffForHumans() }}</span>
             <span class="blog-post-author">by {{ $post->user->username }}</span>
         </div>
 
-        <!-- Featured Image -->
-        @if($post->featured_image)
-            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-64 object-cover rounded-lg mb-6">
-        @endif
-
-        <!-- Post Excerpt -->
+        <!-- Post Description -->
         @if($post->description)
             <div class="text-xl text-camarone-700 mb-6 font-medium leading-relaxed border-l-4 border-camarone-500 pl-6">
                 {{ $post->description }}

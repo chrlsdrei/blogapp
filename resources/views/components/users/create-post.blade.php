@@ -41,19 +41,6 @@
                           placeholder="Write your post content here..."></textarea>
             </div>
 
-            <div class="mb-6">
-                <label for="featured_image" class="block text-sm font-medium text-camarone-800 mb-2">Featured Image URL</label>
-                <input type="url" id="featured_image" name="featured_image"
-                       class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200"
-                       placeholder="https://example.com/image.jpg">
-            </div>
-
-            <div class="mb-6">
-                <label for="published_at" class="block text-sm font-medium text-camarone-800 mb-2">Publish Date</label>
-                <input type="datetime-local" id="published_at" name="published_at"
-                       class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200">
-            </div>
-
             <div class="flex gap-4 justify-end">
                 <a href="{{ route('home') }}"
                    class="auth-button auth-button-secondary">
