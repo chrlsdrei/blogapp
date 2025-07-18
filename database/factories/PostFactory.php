@@ -17,7 +17,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => 1, // Using existing user ID 1
+            'user_id' => 1,
             'title' => fake()->sentence(4), // Explicit word count
             'slug' => fake()->unique()->slug(3),
             'description' => fake()->paragraph(2),

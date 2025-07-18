@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Since you already have user ID 1, just create posts
         Post::factory(10)->create();
     }
 }
