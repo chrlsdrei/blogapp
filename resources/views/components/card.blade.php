@@ -8,13 +8,14 @@
             <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-48 object-cover rounded-lg mb-4">
         @endif
 
-        @if($post->excerpt)
-            <p class="text-camarone-600 mb-4 font-medium">{{ $post->excerpt }}</p>
-        @endif
-
-        <div class="blog-post-body">{{ $post->body }}</div>
-
-        <div class="blog-post-meta">
+        @if($post->description)
+            <div class="bg-camarone-100 p-4 rounded-lg mb-4">
+                <p class="text-camarone-700 font-medium">{{ $post->description }}</p>
+            </div>
+            <div class="blog-post-body">{{ Str::limit($post->body, 150, '...') }}</div>
+        @else
+            <div class="blog-post-body">{{ Str::limit($post->body, 300, '...') }}</div>
+        @endif        <div class="blog-post-meta">
             <span class="blog-post-date">{{ $post->created_at->diffForHumans() }}</span>
             <span class="blog-post-author">{{ $post->user->username }}</span>
         </div>
