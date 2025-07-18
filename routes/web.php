@@ -30,8 +30,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/create-post', [DashboardController::class, 'index'])->name('create-post');
 
-    // Comments route (nested under posts)
-    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    // Comments routes (nested under posts)
+    Route::post('/posts/{post:slug}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/posts/{post:slug}/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
     // Only logged-in users can perform these actions.
     Route::resource('posts', PostController::class)

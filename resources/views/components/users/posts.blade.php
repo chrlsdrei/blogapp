@@ -11,6 +11,12 @@
 <x-nav />
 
 <main class="py-8 px-4 mx-auto max-w-4xl">
+    @if(session('success'))
+        <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+
     <!-- Back to Home Button -->
     <div class="mb-8">
         <a href="{{ route('home') }}" class="inline-flex items-center text-camarone-600 hover:text-camarone-700 font-semibold transition-colors duration-200">
@@ -60,8 +66,22 @@
                 @foreach($post->comments as $comment)
                     <div class="bg-camarone-50 border border-camarone-200 rounded-lg p-4 mb-4">
                         <div class="flex justify-between items-start mb-2">
-                            <h4 class="font-semibold text-camarone-800">{{ $comment->user->username }}</h4>
-                            <span class="text-sm text-camarone-600">{{ $comment->created_at->diffForHumans() }}</span>
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-semibold text-camarone-800">{{ $comment->user->username }}</h4>
+                                <span class="text-sm text-camarone-600">{{ $comment->created_at->diffForHumans() }}</span>
+                            </div>
+
+                            @auth
+                                @if(auth()->id() === $comment->user_id || auth()->id() === $post->user_id)
+                                    <form action="{{ route('comments.destroy', [$post->slug, $comment->id]) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this comment?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-sm text-red-600 hover:text-red-700 hover:bg-red-50 px-2 py-1 rounded transition-colors duration-200">
+                                            Delete
+                                        </button>
+                                    </form>
+                                @endif
+                            @endauth
                         </div>
                         <p class="text-camarone-700 leading-relaxed">{!! nl2br(e($comment->comment)) !!}</p>
                     </div>
