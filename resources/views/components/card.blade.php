@@ -4,10 +4,6 @@
     <article class="blog-post-card mb-8">
         <h2 class="blog-post-title">{{ $post->title }}</h2>
 
-        @if($post->featured_image)
-            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" class="w-full h-48 object-cover rounded-lg mb-4">
-        @endif
-
         @if($post->description)
             <div class="bg-camarone-100 p-4 rounded-lg mb-4">
                 <p class="text-camarone-700 font-medium">{{ $post->description }}</p>

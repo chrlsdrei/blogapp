@@ -50,8 +50,6 @@ class PostController extends Controller
             'title' => 'required|max:255',
             'description' => 'nullable|max:500',
             'body' => 'required',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'published_at' => 'nullable|date',
         ]);
 
         // Create the post
@@ -60,8 +58,6 @@ class PostController extends Controller
             'slug' => $slug,
             'description' => $request->description,
             'body' => $request->body,
-            'featured_image' => $request->featured_image,
-            'published_at' => $request->published_at,
         ]);
 
         return redirect()->route('home')->with('success', 'Post created successfully!');
@@ -105,7 +101,6 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'body' => 'required|string',
-            'featured_image' => 'nullable|url',
         ]);
 
         // Generate slug from title if title has changed
