@@ -56,22 +56,33 @@
 
         <!-- Existing Comments Display -->
         <div id="comments-list" class="mb-8">
-            <!-- Placeholder for future comments -->
-            <div class="text-center py-8 text-camarone-600">
-                <svg class="mx-auto w-12 h-12 mb-4 text-camarone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.959 8.959 0 01-4.906-1.468L3 21l2.532-5.906A8.959 8.959 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
-                </svg>
-                <p class="text-lg">No comments yet. Be the first to share your thoughts!</p>
-            </div>
+            @if($post->comments->count() > 0)
+                @foreach($post->comments as $comment)
+                    <div class="bg-camarone-50 border border-camarone-200 rounded-lg p-4 mb-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-semibold text-camarone-800">{{ $comment->user->username }}</h4>
+                            <span class="text-sm text-camarone-600">{{ $comment->created_at->diffForHumans() }}</span>
+                        </div>
+                        <p class="text-camarone-700 leading-relaxed">{!! nl2br(e($comment->comment)) !!}</p>
+                    </div>
+                @endforeach
+            @else
+                <!-- Placeholder for no comments -->
+                <div class="text-center py-8 text-camarone-600">
+                    <svg class="mx-auto w-12 h-12 mb-4 text-camarone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.959 8.959 0 01-4.906-1.468L3 21l2.532-5.906A8.959 8.959 0 013 12c0-4.418 3.582-8 8-8s8 3.582 8 8z"></path>
+                    </svg>
+                    <p class="text-lg">No comments yet. Be the first to share your thoughts!</p>
+                </div>
+            @endif
         </div>
 
         <!-- Add Comment Form -->
         @auth
         <div class="border-t border-camarone-200 pt-8">
             <h3 class="text-xl font-semibold text-camarone-800 mb-4">Leave a Comment</h3>
-            <form action="#" method="POST" class="space-y-4">
+            <form action="{{ route('comments.store', $post) }}" method="POST" class="space-y-4">
                 @csrf
-                <input type="hidden" name="post_id" value="{{ $post->id }}">
 
                 <div>
                     <label for="comment" class="block text-sm font-medium text-camarone-800 mb-2">Your Comment</label>
