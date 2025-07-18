@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PostController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -99,6 +101,16 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        // Check if the user is authorized to delete this post
+        $this->authorize('delete', $post);
+
+        // Delete the post
+        $post->delete();
+
+        // Get redirect URL from request or default to profile
+        $redirectUrl = request('redirect_back', route('profile'));
+
+        // Redirect back with success message
+        return redirect($redirectUrl)->with('success', 'Post deleted successfully!');
     }
 }

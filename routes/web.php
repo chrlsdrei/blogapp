@@ -34,5 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 
     // Only logged-in users can perform these actions.
-    Route::resource('posts', PostController::class)->except(['index', 'show']);
+    Route::resource('posts', PostController::class)
+        ->except(['index', 'show'])
+        ->parameters(['posts' => 'post:slug']);
 });
