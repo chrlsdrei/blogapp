@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,10 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        $posts = Post::latest()->paginate(5);
-        // If you want to paginate the posts, you can use:
-        // $posts = Post::paginate(10);
+        $posts = Post::with('user')->latest()->paginate(5);
 
         return view('components.users.home', [ 'posts' => $posts ]);
     }
@@ -26,15 +23,45 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('components.users.create-post');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        //
+        // Generate slug from title
+        $baseSlug = \Illuminate\Support\Str::slug($request->title);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        // Check if slug exists and make it unique
+        while (Post::where('slug', $slug)->exists()) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+
+        // Validate the request
+        $fields = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'nullable|max:500',
+            'body' => 'required',
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'published_at' => 'nullable|date',
+        ]);
+
+        // Create the post
+        Auth::user()->posts()->create([
+            'title' => $request->title,
+            'slug' => $slug,
+            'description' => $request->description,
+            'body' => $request->body,
+            'featured_image' => $request->featured_image,
+            'published_at' => $request->published_at,
+        ]);
+
+        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -56,7 +83,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
         //
     }

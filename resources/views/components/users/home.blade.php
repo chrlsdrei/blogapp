@@ -16,7 +16,7 @@
         <p class="text-lg text-camarone-700">Welcome to your blog dashboard!</p>
     </div>
 
-    <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
+    <div class="grid gap-8 grid-cols-1">
 
     @foreach ($posts as $post)
         <article class="blog-post-card mb-8">

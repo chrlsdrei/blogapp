@@ -28,7 +28,9 @@
                             <p class="text-camarone-800 font-medium">{{ auth()->user()->username }}</p>
                         </div>
                         <a href="{{ route('home') }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">View Profile</a>
-
+                        <a href="{{ route('create-post') }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">Create Post</a>
+                        <a href="{{ route('home') }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">My Posts</a>
+                        <a href="{{ route('home', auth()->user()->username) }}" class="block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150">Edit Profile</a>
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="w-full text-left block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150 cursor-pointer">Logout</button>
