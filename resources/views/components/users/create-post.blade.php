@@ -28,8 +28,8 @@
             </div>
 
             <div class="mb-6">
-                <label for="excerpt" class="block text-sm font-medium text-camarone-800 mb-2">Description</label>
-                <textarea id="excerpt" name="excerpt" rows="3"
+                <label for="description" class="block text-sm font-medium text-camarone-800 mb-2">Description</label>
+                <textarea id="description" name="description" rows="3"
                           class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200"
                           placeholder="Brief description of your post..."></textarea>
             </div>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="flex gap-4 justify-end">
-                <a href="{{ route('posts.index') }}"
+                <a href="{{ route('home') }}"
                    class="auth-button auth-button-secondary">
                     Cancel
                 </a>

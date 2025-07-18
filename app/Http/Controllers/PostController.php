@@ -61,7 +61,7 @@ class PostController extends Controller
             'published_at' => $request->published_at,
         ]);
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+        return redirect()->route('home')->with('success', 'Post created successfully!');
     }
 
     /**
@@ -69,7 +69,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        // Load the user relationship for the post
+        $post->load('user');
+
+        return view('components.users.posts', compact('post'));
     }
 
     /**
