@@ -13,7 +13,7 @@
 <main class="py-8 px-4 mx-auto max-w-4xl">
     <div class="text-center mb-12">
         <h1 class="text-4xl font-bold text-camarone-800 mb-4">Create New Post</h1>
-        <p class="text-lg text-camarone-700">Share your thoughts with the world</p>
+        <p class="text-lg text-camarone-700">Share your thoughts with your fellow gardeners!</p>
     </div>
 
     <div class="blog-post-card">

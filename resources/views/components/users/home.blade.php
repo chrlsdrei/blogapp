@@ -13,7 +13,6 @@
 <main class="py-8 px-4 mx-auto max-w-4xl">
     <div class="text-center mb-12">
         <h1 class="text-4xl font-bold text-camarone-800 mb-4">Hello {{auth()->user()->username}}!</h1>
-        <p class="text-lg text-camarone-700">Welcome to your blog dashboard!</p>
     </div>
 
     <div class="grid gap-8 grid-cols-1">
