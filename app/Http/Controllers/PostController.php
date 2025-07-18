@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class PostController extends Controller
@@ -85,7 +86,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        // Check if the user is authorized to edit this post
+        $this->authorize('update', $post);
+
+        return view('components.users.edit', compact('post'));
     }
 
     /**
@@ -93,7 +97,36 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        // Check if the user is authorized to update this post
+        $this->authorize('update', $post);
+
+        // Validate the request data
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:500',
+            'body' => 'required|string',
+            'featured_image' => 'nullable|url',
+        ]);
+
+        // Generate slug from title if title has changed
+        if ($post->title !== $validated['title']) {
+            $validated['slug'] = \Str::slug($validated['title']);
+
+            // Ensure slug is unique
+            $originalSlug = $validated['slug'];
+            $counter = 1;
+            while (Post::where('slug', $validated['slug'])->where('id', '!=', $post->id)->exists()) {
+                $validated['slug'] = $originalSlug . '-' . $counter;
+                $counter++;
+            }
+        }
+
+        // Update the post
+        $post->update($validated);
+
+        // Redirect back to the edit page with success message
+        return redirect()->route('posts.edit', $post->slug)
+                        ->with('success', 'Post updated successfully!');
     }
 
     /**

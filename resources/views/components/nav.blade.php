@@ -19,7 +19,7 @@
             <div>
                 @auth
                 <div class="relative">
-                    <button type="button" class="round-btn bg-camarone-600 text-white p-2 rounded-full hover:bg-camarone-700 transition duration-150" onclick="toggleDropdown()">
+                    <button type="button" class="cursor-pointer round-btn bg-camarone-600 text-white p-2 rounded-full hover:bg-camarone-700 transition duration-150" onclick="toggleDropdown()">
                         <img src="https://picsum.photos/id/237/200/300" alt="User Avatar" class="w-8 h-8 rounded-full object-cover">
                     </button>
 
