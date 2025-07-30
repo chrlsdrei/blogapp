@@ -19,8 +19,12 @@
             <div>
                 @auth
                 <div class="relative">
-                    <button type="button" class="cursor-pointer round-btn bg-camarone-600 text-white p-2 rounded-full hover:bg-camarone-700 transition duration-150" onclick="toggleDropdown()">
-                        <img src="https://picsum.photos/id/237/200/300" alt="User Avatar" class="w-8 h-8 rounded-full object-cover">
+                    <button type="button" 
+                            class="cursor-pointer round-btn bg-camarone-600 text-white p-2 rounded-full hover:bg-camarone-700 transition duration-150" 
+                            onclick="toggleDropdown()">
+                        <div class="w-8 h-8 rounded-full overflow-hidden">
+                            <img src="https://picsum.photos/id/237/200/300" alt="User Avatar" class="w-full h-full object-cover">
+                        </div>
                     </button>
 
                     <div id="dropdown" class="hidden bg-camarone-50 shadow-lg absolute top-12 right-0 rounded-lg overflow-hidden font-light min-w-48 z-50">
@@ -33,18 +37,14 @@
                             @csrf
                             <button type="submit" class="w-full text-left block hover:bg-camarone-100 px-4 py-2 text-camarone-700 transition duration-150 cursor-pointer">Logout</button>
                         </form>
-                        <div class="border-t border-camarone-200">
-                        </div>
                     </div>
                 </div>
                 @endauth
 
                 @guest
                 <div class="flex items-center gap-4">
-                    <a href="{{ route('register') }}"
-                       class="transition duration-150 hover:text-camarone-200">Register</a>
-                    <a href="{{ route('login') }}"
-                       class="transition duration-150 hover:text-camarone-200">Login</a>
+                    <a href="{{ route('register') }}" class="transition duration-150 hover:text-camarone-200">Register</a>
+                    <a href="{{ route('login') }}" class="transition duration-150 hover:text-camarone-200">Login</a>
                 </div>
                 @endguest
             </div>
