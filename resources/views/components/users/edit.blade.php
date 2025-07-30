@@ -18,19 +18,29 @@
         </div>
 
         @if(session('success'))
-            <div class="mb-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-                <span class="block sm:inline">{{ session('success') }}</span>
-            </div>
+            <x-radix.alert class="mb-6">
+                <x-radix.alert-icon />
+                <x-radix.alert-content>
+                    <x-radix.alert-title>Success</x-radix.alert-title>
+                    <x-radix.alert-description>{{ session('success') }}</x-radix.alert-description>
+                </x-radix.alert-content>
+            </x-radix.alert>
         @endif
 
         @if($errors->any())
-            <div class="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-                <ul class="list-disc list-inside">
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+            <x-radix.alert variant="destructive" class="mb-6">
+                <x-radix.alert-icon />
+                <x-radix.alert-content>
+                    <x-radix.alert-title>Error</x-radix.alert-title>
+                    <x-radix.alert-description>
+                        <ul class="list-disc list-inside">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </x-radix.alert-description>
+                </x-radix.alert-content>
+            </x-radix.alert>
         @endif
 
         <form action="{{ route('posts.update', $post->slug) }}" method="POST" class="space-y-6">
@@ -38,41 +48,61 @@
             @method('PUT')
 
             <div>
-                <label for="title" class="block text-sm font-medium text-camarone-800 mb-2">Post Title</label>
-                <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}" required
-                       class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200"
-                       placeholder="Enter your post title">
+                <x-radix.label for="title" class="block text-sm font-medium text-camarone-800 mb-2">Post Title</x-radix.label>
+                <x-radix.text-field>
+                    <x-radix.text-field-input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        value="{{ old('title', $post->title) }}" 
+                        required
+                        placeholder="Enter your post title"
+                        class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200" />
+                </x-radix.text-field>
             </div>
 
             <div>
-                <label for="description" class="block text-sm font-medium text-camarone-800 mb-2">Description (Optional)</label>
-                <textarea id="description" name="description" rows="3"
-                          class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200"
-                          placeholder="Brief description of your post">{{ old('description', $post->description) }}</textarea>
+                <x-radix.label for="description" class="block text-sm font-medium text-camarone-800 mb-2">Description (Optional)</x-radix.label>
+                <x-radix.text-area>
+                    <x-radix.text-area-input 
+                        id="description" 
+                        name="description" 
+                        rows="3"
+                        placeholder="Brief description of your post"
+                        class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200">{{ old('description', $post->description) }}</x-radix.text-area-input>
+                </x-radix.text-area>
             </div>
 
             <div>
-                <label for="body" class="block text-sm font-medium text-camarone-800 mb-2">Content</label>
-                <textarea id="body" name="body" rows="12" required
-                          class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200"
-                          placeholder="Write your post content here...">{{ old('body', $post->body) }}</textarea>
+                <x-radix.label for="body" class="block text-sm font-medium text-camarone-800 mb-2">Content</x-radix.label>
+                <x-radix.text-area>
+                    <x-radix.text-area-input 
+                        id="body" 
+                        name="body" 
+                        rows="12" 
+                        required
+                        placeholder="Write your post content here..."
+                        class="w-full px-4 py-3 border border-camarone-200 rounded-lg focus:ring-2 focus:ring-camarone-500 focus:border-camarone-500 transition-colors duration-200">{{ old('body', $post->body) }}</x-radix.text-area-input>
+                </x-radix.text-area>
             </div>
 
             <div class="flex items-center justify-between pt-6 border-t border-camarone-200">
-                <a href="{{ route('profile') }}" class="inline-flex items-center px-4 py-2 text-camarone-600 hover:text-camarone-700 font-medium transition-colors duration-200">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    Back to Profile
-                </a>
+                <x-radix.button variant="ghost" as-child>
+                    <a href="{{ route('profile') }}" class="inline-flex items-center px-4 py-2 text-camarone-600 hover:text-camarone-700 font-medium transition-colors duration-200">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Back to Profile
+                    </a>
+                </x-radix.button>
 
                 <div class="flex items-center gap-3">
-                    <button type="submit" class="inline-flex items-center px-6 py-2 bg-camarone-600 text-white rounded-lg hover:bg-camarone-700 font-medium transition-colors duration-200 cursor-pointer">
+                    <x-radix.button type="submit" class="inline-flex items-center px-6 py-2 bg-camarone-600 text-white rounded-lg hover:bg-camarone-700 font-medium transition-colors duration-200 cursor-pointer">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                         </svg>
                         Update Post
-                    </button>
+                    </x-radix.button>
                 </div>
             </div>
         </form>

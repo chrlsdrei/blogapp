@@ -28,19 +28,23 @@
         <div class="max-w-7xl mx-auto flex items-center gap-16">
             <!-- Blog Post Card -->
             <div class="flex-1">
-                <div class="blog-post-card">
-                    <h3 class="blog-post-title">Getting Started with Your Garden Journey</h3>
-                    <p class="blog-post-body">
-                        Welcome to the amazing world of garden building! This is where your creativity meets nature,
-                        and every seed you plant tells a story. From choosing the perfect flowers to designing
-                        intricate layouts, your garden is a reflection of your unique style and personality.
-                        Join thousands of gardeners who share their progress, tips, and beautiful creations daily.
-                    </p>
-                    <div class="blog-post-meta">
-                        <span class="blog-post-date">July 15, 2025</span>
-                        <span class="blog-post-author">By Garden Master</span>
-                    </div>
-                </div>
+                <x-radix.card class="blog-post-card">
+                    <x-radix.card-header>
+                        <x-radix.card-title class="blog-post-title">Getting Started with Your Garden Journey</x-radix.card-title>
+                    </x-radix.card-header>
+                    <x-radix.card-content>
+                        <p class="blog-post-body">
+                            Welcome to the amazing world of garden building! This is where your creativity meets nature,
+                            and every seed you plant tells a story. From choosing the perfect flowers to designing
+                            intricate layouts, your garden is a reflection of your unique style and personality.
+                            Join thousands of gardeners who share their progress, tips, and beautiful creations daily.
+                        </p>
+                        <div class="blog-post-meta">
+                            <span class="blog-post-date">July 15, 2025</span>
+                            <span class="blog-post-author">By Garden Master</span>
+                        </div>
+                    </x-radix.card-content>
+                </x-radix.card>
             </div>
 
             <!-- Text Content -->
@@ -71,19 +75,23 @@
 
             <!-- Blog Post Card -->
             <div class="flex-1">
-                <div class="blog-post-card">
-                    <h3 class="blog-post-title">Connect with Fellow Gardeners</h3>
-                    <p class="blog-post-body">
-                        Building a garden is more fun when shared with friends! Our community is filled with
-                        passionate gardeners ready to help, trade, and celebrate your achievements. Whether
-                        you're looking for rare seeds, want to showcase your latest creation, or need advice
-                        on garden design, you'll find supportive friends here who share your passion for growing.
-                    </p>
-                    <div class="blog-post-meta">
-                        <span class="blog-post-date">July 16, 2025</span>
-                        <span class="blog-post-author">By Community Team</span>
-                    </div>
-                </div>
+                <x-radix.card class="blog-post-card">
+                    <x-radix.card-header>
+                        <x-radix.card-title class="blog-post-title">Connect with Fellow Gardeners</x-radix.card-title>
+                    </x-radix.card-header>
+                    <x-radix.card-content>
+                        <p class="blog-post-body">
+                            Building a garden is more fun when shared with friends! Our community is filled with
+                            passionate gardeners ready to help, trade, and celebrate your achievements. Whether
+                            you're looking for rare seeds, want to showcase your latest creation, or need advice
+                            on garden design, you'll find supportive friends here who share your passion for growing.
+                        </p>
+                        <div class="blog-post-meta">
+                            <span class="blog-post-date">July 16, 2025</span>
+                            <span class="blog-post-author">By Community Team</span>
+                        </div>
+                    </x-radix.card-content>
+                </x-radix.card>
             </div>
         </div>
     </section>
@@ -95,12 +103,16 @@
                 Ready to Start Your Garden Journey?
             </h2>
             <div class="flex gap-6 justify-center">
-                <a href="{{ route('register') }}" class="auth-button auth-button-primary">
-                    Register Now
-                </a>
-                <a href="{{ route('login') }}" class="auth-button auth-button-secondary">
-                    Login
-                </a>
+                <x-radix.button as-child>
+                    <a href="{{ route('register') }}" class="auth-button auth-button-primary">
+                        Register Now
+                    </a>
+                </x-radix.button>
+                <x-radix.button variant="ghost" as-child>
+                    <a href="{{ route('login') }}" class="auth-button auth-button-secondary">
+                        Login
+                    </a>
+                </x-radix.button>
             </div>
         </div>
     </section>
