@@ -45,6 +45,9 @@
                 <div class="flex items-center gap-4">
                     <a href="{{ route('register') }}" class="transition duration-150 hover:text-camarone-200">Register</a>
                     <a href="{{ route('login') }}" class="transition duration-150 hover:text-camarone-200">Login</a>
+                    <span class="text-camarone-400">|</span>
+                    <a href="{{ route('admin.register') }}" class="transition duration-150 hover:text-camarone-200">Admin Register</a>
+                    <a href="{{ route('admin.login') }}" class="transition duration-150 hover:text-camarone-200">Admin Login</a>
                 </div>
                 @endguest
             </div>

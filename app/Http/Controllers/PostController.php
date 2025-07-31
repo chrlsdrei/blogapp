@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->latest()->paginate(5);
+        $posts = Post::approved()->with('user')->latest()->paginate(5);
 
         return view('components.users.home', [ 'posts' => $posts ]);
     }
@@ -52,15 +52,16 @@ class PostController extends Controller
             'body' => 'required',
         ]);
 
-        // Create the post
+        // Create the post with pending status
         Auth::user()->posts()->create([
             'title' => $request->title,
             'slug' => $slug,
             'description' => $request->description,
             'body' => $request->body,
+            'status' => 'pending',
         ]);
 
-        return redirect()->route('home')->with('success', 'Post created successfully!');
+        return redirect()->route('home')->with('success', 'Post created successfully! It will be reviewed by an admin before being published.');
     }
 
     /**
@@ -68,6 +69,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        // Only show approved posts to the public
+        if ($post->status !== 'approved') {
+            abort(404);
+        }
+
         // Load the user relationship for the post and comments with their users (latest first)
         $post->load(['user', 'comments.user' => function ($query) {
             $query->latest();

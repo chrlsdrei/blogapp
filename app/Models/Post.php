@@ -18,6 +18,7 @@ class Post extends Model
         'description',
         'body',
         'user_id',
+        'status',
         'published_at',
         'featured_image',
     ];
@@ -36,5 +37,29 @@ class Post extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Scope to get only approved posts
+     */
+    public function scopeApproved($query)
+    {
+        return $query->where('status', 'approved');
+    }
+
+    /**
+     * Scope to get only pending posts
+     */
+    public function scopePending($query)
+    {
+        return $query->where('status', 'pending');
+    }
+
+    /**
+     * Scope to get only declined posts
+     */
+    public function scopeDeclined($query)
+    {
+        return $query->where('status', 'declined');
     }
 }

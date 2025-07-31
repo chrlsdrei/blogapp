@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminController;
 
 Route::view('/', 'welcome')
     ->name('welcome');
@@ -38,4 +39,23 @@ Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class)
         ->except(['index', 'show'])
         ->parameters(['posts' => 'post:slug']);
+});
+
+// Admin routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Guest admin routes
+    Route::middleware('guest:admin')->group(function () {
+        Route::get('/register', [AdminController::class, 'showRegister'])->name('register');
+        Route::post('/register', [AdminController::class, 'register']);
+        Route::get('/login', [AdminController::class, 'showLogin'])->name('login');
+        Route::post('/login', [AdminController::class, 'login']);
+    });
+
+    // Protected admin routes
+    Route::middleware('admin')->group(function () {
+        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+        Route::post('/posts/{post}/approve', [AdminController::class, 'approvePost'])->name('posts.approve');
+        Route::post('/posts/{post}/decline', [AdminController::class, 'declinePost'])->name('posts.decline');
+        Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    });
 });
